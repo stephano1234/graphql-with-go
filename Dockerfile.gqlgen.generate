@@ -1,0 +1,9 @@
+FROM golang:1.19
+
+WORKDIR /usr/src/gqlgen
+
+ENTRYPOINT go mod tidy && go run github.com/99designs/gqlgen generate
+
+# docker build -t stephano1234/gqlgen-generate -f Dockerfile.gqlgen.generate .
+# docker run --rm -v "$(pwd)"/:/usr/src/gqlgen stephano1234/gqlgen-generate
+# sudo chown -R main .

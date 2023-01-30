@@ -1,0 +1,16 @@
+FROM ubuntu:20.04
+
+WORKDIR /var/lib/sqlite
+
+RUN apt update
+RUN apt upgrade -y
+RUN apt install sqlite3 -y
+
+# docker build -t stephano1234/sqlite-schema -f Dockerfile.sqlite.schema .
+# [ $(find db/ -name data.db | wc -l) -gt 0 ] && (rm data.db && echo "data.db removed") || echo "data.db not found"
+# docker run --rm -it -v "$(pwd)"/db/:/var/lib/sqlite stephano1234/sqlite-schema bash
+# sqlite3 data.db
+# CREATE TABLE category (id string, name string, description string);
+# CREATE TABLE course (id string, name string, description string, category_id string);
+# .quit
+# exit

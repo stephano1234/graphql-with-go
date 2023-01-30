@@ -1,0 +1,12 @@
+FROM golang:1.19
+
+WORKDIR /usr/src/gqlgen
+
+ENTRYPOINT printf '// +build tools\npackage tools\nimport (_ "github.com/99designs/gqlgen"\n _ "github.com/99designs/gqlgen/graphql/introspection")' | gofmt > tools.go && \
+    go mod init github.com/stephano1234/graphql-go && \
+    go mod tidy && \
+    go run github.com/99designs/gqlgen init
+
+# docker build -t stephano1234/gqlgen-init -f Dockerfile.gqlgen.init .
+# docker run --rm -v "$(pwd)"/:/usr/src/gqlgen stephano1234/gqlgen-init
+# sudo chown -R main .
